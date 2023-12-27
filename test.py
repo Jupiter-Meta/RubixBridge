@@ -2,8 +2,8 @@ import requests
 
 api_url = 'http://localhost:5050/api/savedatatoken'
 json_data = {
-    "key1": "value1",
-    "key2": "value2"
+    "name": "value1",
+    "test": "value2"
 }
 
 response = requests.post(api_url, json=json_data)
