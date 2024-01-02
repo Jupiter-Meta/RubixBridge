@@ -72,7 +72,7 @@ def createParentDID():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
-    url = f'http://localhost:{port}/api/createdid'
+    url = f'http://13.235.145.208:{port}/api/createdid'
     
     # Create a dictionary for form data
     form_data = {'did_config': (None, '{"type":0,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'),}
@@ -160,7 +160,7 @@ def createchildDID():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
-    alldidurl = f'http://localhost:{port}/api/getalldid'
+    alldidurl = f'http://13.235.145.208:{port}/api/getalldid'
 
     
     
@@ -170,7 +170,7 @@ def createchildDID():
     print(parentDID)
     start_time = time.time()
     # Define the API endpoint URL
-    url = f'http://localhost:{port}/api/createdid'
+    url = f'http://13.235.145.208:{port}/api/createdid'
 
     # Create a dictionary for form data
     formstring = '{"type":3,"dir":"","config":"","master_did":"","secret":"My DID Secret","priv_pwd":"mypassword","quorum_pwd":"mypassword"}'
@@ -257,7 +257,7 @@ def getalldid():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
-    alldidurl = f'http://localhost:{port}/api/getalldid'
+    alldidurl = f'http://13.235.145.208:{port}/api/getalldid'
 
     try:
         response = requests.get(alldidurl)
@@ -327,7 +327,7 @@ def createdt():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     #To get parentDID
-    alldidurl = f'http://localhost:{port}/api/getalldid'
+    alldidurl = f'http://13.235.145.208:{port}/api/getalldid'
 
     
     
@@ -337,7 +337,7 @@ def createdt():
     print(parentDID)
        
     # Define the API endpoint URL
-    url = f'http://localhost:{port}/api/create-data-token?did={parentDID}'
+    url = f'http://13.235.145.208:{port}/api/create-data-token?did={parentDID}'
 
     formstring = '{"UserID": "1","UserInfo": "abc","CommitterDID": "cdid","BacthID": "10","FileInfo": "{}"}'
     formstring = json.loads(formstring)
@@ -345,7 +345,7 @@ def createdt():
     # formstring = json.dumps(formstring)
 
 
-    # url = 'http://localhost:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
+    # url = 'http://13.235.145.208:20000/api/create-data-token?did=bafybmigqedkcsr3drksfhc5iwza7ajavdaaswsn3ro2cvlu6fgbypbqz7q'
     # form_data = {'UserID': '1','UserInfo': 'abc','CommitterDID': '{did}','BacthID': '10','FileInfo': '{}'}
     
     files = {'FileContent': ('datatoken.json', open('datatoken.json', 'rb'), 'application/json')}
@@ -359,7 +359,7 @@ def createdt():
         id=id['result']['id']
         print(id)
         signdata={"id":str(id),"mode":0,"password":"mypassword"}
-        signurl=f'http://localhost:{port}/api/signature-response'
+        signurl=f'http://13.235.145.208:{port}/api/signature-response'
         print(signurl)
         try:
             #calling signature API
@@ -411,19 +411,19 @@ def commitdt():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     #To get parentDID
-    alldidurl = f'http://localhost:{port}/api/getalldid'
+    alldidurl = f'http://13.235.145.208:{port}/api/getalldid'
   
     alldid = requests.get(alldidurl)
     alldid = json.loads(alldid.text)
     parentDID = alldid['account_info'][0]['did']
     print(parentDID)
-    checkdturl = f'http://localhost:{port}/api/get-data-token?did={parentDID}'
+    checkdturl = f'http://13.235.145.208:{port}/api/get-data-token?did={parentDID}'
     
     try:
         checkdturlresponse = requests.get(checkdturl)
         print(checkdturlresponse.text)
         
-        commitdturl = f'http://localhost:{port}/api/commit-data-token?did={parentDID}&batchID={parentDID}'
+        commitdturl = f'http://13.235.145.208:{port}/api/commit-data-token?did={parentDID}&batchID={parentDID}'
         
         response = requests.post(commitdturl)
         print(response)
@@ -441,7 +441,7 @@ def commitdt():
                 id=id['result']['id']
                 print(id)
                 signdata={"id":str(id),"mode":0,"password":"mypassword"}
-                signurl=f'http://localhost:{port}/api/signature-response'
+                signurl=f'http://13.235.145.208:{port}/api/signature-response'
                 print(signurl)
                 try:
                     #calling signature API
@@ -482,7 +482,7 @@ def shutdownall():
     }
 
     for node_name, port in node_to_port.items():
-        url = f'http://localhost:{port}/api/shutdown'
+        url = f'http://13.235.145.208:{port}/api/shutdown'
         
         try:
             response = requests.get(url)
@@ -512,7 +512,7 @@ def testAllNodes():
     }
 
     for node_name, port in node_to_port.items():
-        url = f'http://localhost:{port}/api/getalldid'
+        url = f'http://13.235.145.208:{port}/api/getalldid'
         
         try:
             response = requests.get(url)
@@ -611,7 +611,7 @@ def getallquorum():
         return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
     
     # Define the API endpoint URL
-    alldidurl = f'http://localhost:{port}/api/getallquorum'
+    alldidurl = f'http://13.235.145.208:{port}/api/getallquorum'
 
     try:
         response = requests.get(alldidurl)
@@ -647,13 +647,13 @@ def getalldt():
 		error_message = f"Invalid Application: {user_input}."
 		return jsonify({'error': error_message}), 400  # Return a JSON error response with a 400 status code
 
-	alldidurl = f'http://localhost:{port}/api/getalldid'
+	alldidurl = f'http://13.235.145.208:{port}/api/getalldid'
 	alldid = requests.get(alldidurl)
 	alldid = json.loads(alldid.text)
 	parentDID = alldid['account_info'][0]['did']
 	print(parentDID)
 
-	url = f'http://localhost:{port}/api/get-data-token?did={parentDID}'
+	url = f'http://13.235.145.208:{port}/api/get-data-token?did={parentDID}'
 	headers = {'accept': 'application/json'}
 
 	try:
