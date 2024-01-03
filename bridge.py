@@ -34,6 +34,12 @@ def security(fname):
 	collection.insert_one(APILog)
 	# mongo_client.close()
 
+# Home
+@app.route('/', methods=['GET'])
+def home():
+	security(str(sys._getframe().f_code.co_name))
+	return "Hello"
+
 #CreateDID Parent API
 @app.route('/api/createparentdid', methods=['GET'])
 def createParentDID():
