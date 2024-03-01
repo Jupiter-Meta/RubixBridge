@@ -63,6 +63,9 @@ def createParentDID():
 		'V3': 20004,
 		'V4': 20005,
 		'V5': 20006,
+	    	'V6': 20007,
+	    	'V7': 20008,
+	    	'V8': 20009,
 	}
         # Add more field-to-port mappings as needed
 		
@@ -153,6 +156,9 @@ def createchildDID():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
+	'V6': 20007,
+	'V7': 20008,
+	'V8': 20009,
         
     }
     #Default port (if the user input is not recognized)
@@ -248,6 +254,9 @@ def getalldid():
         'V3': 20004,
         'V4': 20005,
         'V5': 20006,
+	'V6': 20007,
+	'V7': 20008,
+	'V8': 20009,
         # Add more field-to-port mappings as needed
     }
 
