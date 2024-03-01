@@ -1,6 +1,6 @@
 #!/bin/bash
 logfile="/home/ubuntu/cronlog/rubixstartup.log"
-rubix_dir="/home/ubuntu/rubix/rubixgoplatform/linux" 
+rubix_dir="/home/ubuntu/rubixgoplatform/linux" 
 
 # Function to add a timestamp to the logfile
 add_timestamp() {
