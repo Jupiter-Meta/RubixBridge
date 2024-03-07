@@ -28,7 +28,7 @@ for ((i=0; i<=9; i++)); do
   port=$((base_port + i))
   grpc_port=$((base_grpc_port + i))
   echo "Starting for node$i on $port"
-  screen -dmS "node$i" ./rubixgoplatform run -p "node$i" -n "$i" -s -port "$port" -testNet -grpcPort "$grpc_port"
+  screen -dmS "node$i" -L -Logfile "/home/ubuntu/cronlog/rubixstartup_node$i.log" bash -c './rubixgoplatform run -p "node$i" -n "$i" -s -port "$port" -testNet -grpcPort "$grpc_port" ;exec sh';
   add_timestamp "Started session for node$i, port: $port, grpcPort: $grpc_port" >> $logfile
   sleep 10
 done
